@@ -1,56 +1,72 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { FaBars, FaTimes } from "react-icons/fa";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <nav className="bg-[#C97C5D] text-white fixed top-0 left-0 w-full z-50">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-        
-        {/* Logo */}
-        <h1 className="text-2xl font-bold">My Bakery</h1>
+    <nav className="fixed top-0 left-0 w-full z-50 bg-[#C97C5D] text-white shadow-md px-1 py-1">
+      <div className="px-6 py-6 flex justify-between items-center">
+    
+        <div className="text-2xl font-bold">Bakery Shop</div>
 
-        {/* Desktop Menu */}
-        <ul className="hidden md:flex gap-8 text-lg">
-          <li><Link to="/" className="hover:text-[#FFD8B1]">Home</Link></li>
-          <li><Link to="/cart" className="hover:text-[#FFD8B1]">Cart</Link></li>
-          <li><Link to="/about" className="hover:text-[#FFD8B1]">About</Link></li>
-          <li><Link to="/contact" className="hover:text-[#FFD8B1]">Contact</Link></li>
-          
-        </ul>
-
-        {/* Mobile Menu Icon */}
         <button
-          className="md:hidden text-2xl"
+          className="md:hidden focus:outline-none"
           onClick={() => setMenuOpen(!menuOpen)}
         >
-          {menuOpen ? <FaTimes /> : <FaBars />}
+          <svg
+            className="w-7 h-7"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d={
+                menuOpen
+                  ? "M6 18L18 6M6 6l12 12"
+                  : "M4 6h16M4 12h16M4 18h16"
+              }
+            />
+          </svg>
         </button>
+
+        {/* Desktop Menu */}
+        <ul className="hidden md:flex space-x-6">
+          <NavItem to="/">Home</NavItem>
+          <NavItem to="/products">Products</NavItem>
+          <NavItem to="/cart">Cart</NavItem>
+          <NavItem to="/about">About</NavItem>
+          <NavItem to="/contact">Contact</NavItem>
+        </ul>
       </div>
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="md:hidden bg-[#693b19] px-6 pb-6">
-          <ul className="flex flex-col gap-4 text-lg">
-            <li onClick={() => setMenuOpen(false)}>
-              <Link to="/">Home</Link>
-            </li>
-            <li onClick={() => setMenuOpen(false)}>
-              <Link to="/about">About</Link>
-            </li>
-            <li onClick={() => setMenuOpen(false)}>
-              <Link to="/contact">Contact</Link>
-            </li>
-            <li onClick={() => setMenuOpen(false)}>
-              <Link to="/cart">Cart</Link>
-            </li>
-          </ul>
-        </div>
+        <ul className="md:hidden bg-[#C97C5D] px-6 pb-4 space-y-3">
+          <NavItem to="/" onClick={() => setMenuOpen(false)}>Home</NavItem>
+          <NavItem to="/products" onClick={() => setMenuOpen(false)}>Products</NavItem>
+          <NavItem to="/cart" onClick={() => setMenuOpen(false)}>Cart</NavItem>
+          <NavItem to="/about" onClick={() => setMenuOpen(false)}>About</NavItem>
+          <NavItem to="/contact" onClick={() => setMenuOpen(false)}>Contact</NavItem>
+        </ul>
       )}
     </nav>
   );
 };
+
+const NavItem = ({ to, children, onClick }) => (
+  <li>
+    <Link
+      to={to}
+      onClick={onClick}
+      className="block px-2 py-1 rounded hover:bg-[#B36A50] transition-all duration-200"
+    >
+      {children}
+    </Link>
+  </li>
+);
 
 export default Navbar;

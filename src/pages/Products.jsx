@@ -9,7 +9,7 @@ const Products = () => {
   const [searchParams] = useSearchParams();
   const categoryFilter = searchParams.get("category");
 
-  // To show "Item added to cart" message per product
+
   const [addedMessage, setAddedMessage] = useState({});
 
   const handleAddToCart = (product) => {
