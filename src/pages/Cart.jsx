@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { CartContext } from "../context/CartContext";
+import { Link } from "react-router-dom"; // ADD THIS IMPORT
 
 const Cart = () => {
   const { cartItems, increaseQty, decreaseQty, removeFromCart, clearCart } =
@@ -14,7 +15,6 @@ const Cart = () => {
 
   const handleCheckout = () => {
     setShowPaymentSuccess(true);
-
 
     setTimeout(() => {
       clearCart();
@@ -32,12 +32,13 @@ const Cart = () => {
           Your cart is empty
         </h2>
         <p className="text-gray-600 mb-6">Add some delicious treats!</p>
-        <a
-          href="/products"
-          className="px-6 py-3 bg-[#C97C5D] text-white font-medium rounded-full hover:bg-[#B36A50] transition-colors"
+        {/* CHANGE THIS: Use Link instead of <a> */}
+        <Link
+          to="/products"
+          className="px-6 py-3 bg-[#C97C5D] text-white font-medium rounded-full hover:bg-[#B36A50] transition-colors inline-block"
         >
           Browse Products
-        </a>
+        </Link>
       </div>
     );
 
@@ -53,12 +54,13 @@ const Cart = () => {
           <p className="text-green-700 mb-2">₹{total} has been paid</p>
           <p className="text-gray-600">Thank you for your order!</p>
         </div>
-        <a
-          href="/products"
+        {/* CHANGE THIS: Use Link instead of <a> */}
+        <Link
+          to="/products"
           className="px-6 py-3 bg-[#C97C5D] text-white font-medium rounded-full hover:bg-[#B36A50] transition-colors inline-block"
         >
           Continue Shopping
-        </a>
+        </Link>
       </div>
     );
   }
@@ -111,7 +113,6 @@ const Cart = () => {
               </button>
             </div>
 
-        
             <div className="text-right">
               <p className="text-xl font-bold">₹{item.price * item.quantity}</p>
               <button
