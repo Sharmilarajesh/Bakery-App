@@ -1,4 +1,4 @@
-// src/context/CartContext.js
+
 import React, { createContext, useState } from "react";
 
 export const CartContext = createContext();
@@ -19,7 +19,6 @@ export const CartProvider = ({ children }) => {
     });
   };
 
-  // Increase quantity
   const increaseQty = (id) => {
     setCartItems((prev) =>
       prev.map((item) =>
@@ -28,7 +27,7 @@ export const CartProvider = ({ children }) => {
     );
   };
 
-  // Decrease quantity (min 1)
+
   const decreaseQty = (id) => {
     setCartItems((prev) =>
       prev.map((item) =>

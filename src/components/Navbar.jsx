@@ -33,7 +33,7 @@ const Navbar = () => {
           </svg>
         </button>
 
-        {/* Desktop Menu */}
+ 
         <ul className="hidden md:flex space-x-6">
           <NavItem to="/">Home</NavItem>
           <NavItem to="/products">Products</NavItem>
@@ -43,7 +43,7 @@ const Navbar = () => {
         </ul>
       </div>
 
-      {/* Mobile Menu */}
+   
       {menuOpen && (
         <ul className="md:hidden bg-[#C97C5D] px-6 pb-4 space-y-3">
           <NavItem to="/" onClick={() => setMenuOpen(false)}>Home</NavItem>
